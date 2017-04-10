@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Upload base64 </title>
+    <title>Image to base64</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 <div id="upload-wrapper">
     <div align="center">
-        <h3>Upload base64 image with Ajax</h3>
+        <h3>Upload Image</h3>
         <span class="">Image Type allowed: Jpeg, Jpg, Png and Gif. | Maximum Size 1 MB</span>
         <form onSubmit="return false" method="post" enctype="multipart/form-data" id="MyUploadForm">
             <input name="image_file" id="imageInput" type="file" />
@@ -19,11 +19,9 @@
         </form>
         <div id="progressbox" style="display:none;"><div id="progressbar"></div><div id="statustxt">0%</div></div>
         <div id="output"></div>
+        <textarea id="outputCode"></textarea>
     </div>
 </div>
-
-<!-- /container -->
-
-
+<div class="gitlink">base64 Image Script @<a href="https://github.com/solariz/Base64ImgUpload" target="_blank">github</a></div>
 </body>
 </html>

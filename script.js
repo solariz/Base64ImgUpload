@@ -1,18 +1,26 @@
 /**
  * Created by ANICET ERIC KOUAME on 05/03/2017.
+ * change due to function change of displying base64 instead by MARCO GOETZE 10 April 2017
  */
 //function to format bites bit.ly/19yoIPO
 
 
-
 $(document).ready(function () {
-
-
     $("#submit-btn").click(function () {
-
         beforeSubmit();
     });
-
+    $("#outputCode").focus(function() {
+        // Select all on focus; 
+        // Source:  https://stackoverflow.com/questions/5797539/jquery-select-all-text-from-a-textarea
+        var $this = $(this);
+        $this.select();
+        // Work around Chrome's little problem
+        $this.mouseup(function() {
+            // Prevent further mouseup intervention
+            $this.unbind("mouseup");
+            return false;
+        });
+    });      
 });
 
 
@@ -96,6 +104,7 @@ function upload(base64Image,ftype){
         cache: false,
         success: function(result){
 
+            console.log(result);
             if(result){
                 var image = $("<img>", {
                     "src": result,
@@ -104,6 +113,10 @@ function upload(base64Image,ftype){
                 });
                 $("#output").empty();
                 $("#output").append(image);
+                $("#outputCode").empty();
+                $("#outputCode").append(result);          
+                $('#outputCode').css('visibility','visible');
+             
             }else{
                 $("#output").empty();
                 $("#output").html("Error to insert database!!");
@@ -111,12 +124,14 @@ function upload(base64Image,ftype){
 
         },
         error: function (r) {
+            console.log("ERROR");
+            console.log(r);
+
             $("#output").empty();
             $("#output").html("Error to upload image!!");
 
         }
     });
-
 }
 
 
@@ -127,5 +142,3 @@ function bytesToSize(bytes) {
     var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
     return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
 }
-
-
